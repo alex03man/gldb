@@ -1,0 +1,23 @@
+<h1>Listing splitters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @splitters.each do |splitter| %>
+      <tr>
+        <td><%= link_to 'Show', splitter %></td>
+        <td><%= link_to 'Edit', edit_splitter_path(splitter) %></td>
+        <td><%= link_to 'Destroy', splitter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Splitter', new_splitter_path %>
