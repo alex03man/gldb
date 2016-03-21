@@ -1,23 +1,34 @@
-<h1>Listing splitters</h1>
-
-<table>
+<%- model_class = Splitter -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Splitter %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @splitters.each do |splitter| %>
       <tr>
-        <td><%= link_to 'Show', splitter %></td>
-        <td><%= link_to 'Edit', edit_splitter_path(splitter) %></td>
-        <td><%= link_to 'Destroy', splitter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= splitter.id %></td>
+        <td><%=l splitter.created_at, format: :long %></td>
+        <td>
+          <%= link_to splitter_path(splitter), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to splitter_path(splitter), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Splitter', new_splitter_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_splitter_path,
+            :class => 'btn btn-primary' %>
